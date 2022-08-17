@@ -3,20 +3,32 @@ h3,
 p,
 li {
   font-size: 30 px;
-  font-family: sans-serif;
+  font-family: "Times New Roman", Times, serif;
+}
+p {
+  font-family: garamond serif;
+  font-style: italic;
+  font-weight: 700;
 }
 h1,
 h3 {
   font-weight: bold;
   color: crimson;
+}
+h3 {
   font-style: italic;
+  text-shadow: 2px 2px 5px rgb(13, 224, 168);
 }
 h1 {
   color: purple;
 }
+style body {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.7;
+}
 body {
   background-color: #f0e8e8;
-  background-image: url("pastabg.jpg");
   border-right: 5px solid #121111;
   border-left: 5px solid #121111;
 }
@@ -41,6 +53,7 @@ body {
 }
 .main-heading {
   background-color: black;
+  border: 5px solid antiquewhite;
   padding: 0.5em 0.5em;
   display: flex;
   justify-content: space-between;
@@ -72,8 +85,11 @@ button {
   width: 100%;
   opacity: 0.9;
 }
-
-.auth-form {
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+. auth-form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,4 +105,27 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+a:link {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rebeccapurple;
+  font-weight: bold;
+  text-decoration: dotted underline;
+  cursor: pointer;
+  background-color: rgba(250, 235, 215, 0.89);
+  padding: 0.5em 0.5em;
+  width: fit-content;
+}
+img {
+  border: 5px solid black;
+  border-radius: 8px;
+}
+li {
+  font-family: garamond serif;
+  color: rgb(190, 62, 15);
+  font-style: italic;
 }
