@@ -115,15 +115,17 @@
     </div>
   </div>
 
-  <form style="margin: 20px" id="add-recipie">
-    <input id="recipieTitle" type="text" required />
+  <form style="margin: 45px" id="add-recipie">
+    <input id="recipieTitle" type="text" required placeholder="enter recipie title"/>
     <select id="pictureOption" name="image" required>
       <option value="1">Image 1</option>
       <option value="2">Image 2</option>
+      <option value="3">Image 3</option>
+      <option value="4">Image 4</option>
+      <option value="5">Image 5</option>
+      <option value="6">Image 6</option>
     </select>
-    <textarea id="list">
-      enter ingredients seperated by comma
-    </textarea>
+    <textarea id="list" placeholder="enter ingredients seperated by comma"></textarea>
     <button type="submit">Add Item</button>
   </form>
 </body>
@@ -142,13 +144,10 @@
   const container = document.getElementById("container");
 
   function createRecipieBox(title, imgNum, ing) {
-    const btn = document.createElement("button");
-    btn.id = "remove-button";
-    btn.addEventListener("click", removeItem);
-
-    const element = `
-    <div class="item-container">
-      <h3> ${title} </h3>
+    const div = document.createElement("div");
+    div.className = "item-container"
+    div.innerHTML = `
+    <h3>${title} </h3>
       <img width="200px;" src="p${imgNum}.jpg" />
       <p><b>Ingredients:</b></p>
       <b>
@@ -161,10 +160,16 @@
             .join("")}
         </ul>
       </b>
-      ${btn}
-    </div>
-    `;
-    container.innerHTML += element;
+    `
+
+    const btn = document.createElement("button");
+    btn.id = "remove-button";
+    btn.innerHTML = "Remove"
+    btn.addEventListener("click", removeItem);
+
+    div.appendChild(btn)
+
+    container.appendChild(div)
   }
 
   addRecipieForm.style.display = user ? "flex" : "none";

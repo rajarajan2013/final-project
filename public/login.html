@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <script src="/login.js" defer></script>
+    <link href="assign2.css" rel="stylesheet" : />
   </head>
-  <body>
-    <form id="login-form">
+  <body class="center">
+    <form id="login-form" class="auth-form">
       <label for="email">Email</label>
-      <input type="text" id="email" placeholder="Enter your email" required />
+      <input
+        type="text"
+        id="email"
+        placeholder="Enter your email"
+        required
+      /><br /><br />
       <label for="password">Password</label>
       <input
         type="password"
@@ -19,6 +25,7 @@
         required
       />
       <button type="submit">Login</button>
+      <a href="/signup.html">New User? Sign up here</a>
     </form>
   </body>
 </html>

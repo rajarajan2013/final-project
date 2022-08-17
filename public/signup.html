@@ -6,25 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
     <script src="/signup.js" defer></script>
+    <link href="assign2.css" rel="stylesheet" : />
   </head>
-  <body>
-    <form id="signup-form">
+  <body class="center">
+    <form id="signup-form" class="auth-form">
       <label for="firstname">firstname</label>
       <input
         type="text"
         id="firstname"
         placeholder="Enter your firstname"
         required
-      />
+      /><br /><br />
       <label for="lastname">lastname</label>
       <input
         type="text"
         id="lastname"
         placeholder="Enter your lastname"
         required
-      />
+      /><br /><br />
       <label for="email">Email</label>
       <input type="text" id="email" placeholder="Enter your email" required />
+      <br /><br />
       <label for="password">Password</label>
       <input
         type="password"
@@ -32,7 +34,9 @@
         placeholder="Enter your password"
         required
       />
+      <br /><br />
       <button type="submit">Signup</button>
+      <a href="/login.html"> Already have an account? Login </a>
     </form>
   </body>
 </html>
