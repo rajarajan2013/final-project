@@ -1,0 +1,72 @@
+h1,
+h3,
+p,
+li {
+  font-size: 30 px;
+  font-family: sans-serif;
+}
+h1,
+h3 {
+  font-weight: bold;
+  color: crimson;
+  font-style: italic;
+}
+h1 {
+  color: purple;
+}
+body {
+  background-color: #f0e8e8;
+  background-image: url("pastabg.jpg");
+}
+.item-container {
+  border: 5px solid #121111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  width: 320px;
+  font-size: 20px;
+  background-color: antiquewhite;
+  padding: 0.5em 0.5em;
+  justify-content: space-between;
+}
+.title {
+  display: flex;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-heading {
+  background-color: black;
+  padding: 0.5em 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-heading > a {
+  all: unset;
+  cursor: pointer;
+  color: white;
+}
+
+.main-heading span a {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#add-recipie {
+  display: flex;
+  flex-direction: column;
+}
+button {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}

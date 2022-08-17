@@ -1,0 +1,223 @@
+<head>
+  <title>Pasta Recipes</title>
+  <link href="assign2.css" rel="stylesheet" : />
+</head>
+
+<body>
+  <div class="heading">
+    <h1 class="main-heading">
+      <a href="/">Pasta Recipes !</a>
+      <span id="auth-required">
+        <a href="/login.html">Login</a>
+        <a href="/signup.html">Signup</a>
+      </span>
+      <span id="auth-done">
+        <a id="logout">Logout</a>
+      </span>
+    </h1>
+
+    
+
+  <div id="container" class="container">
+    <div class="item-container">
+      <h3>Creamy pasta </h3>
+      <img width="160px;" height ="160px" src="p1.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b>
+        <ul>
+          <li>250g fusilli</li>
+          <li>300g asparagus spear</li>
+          <li>175g frozen pea</li>
+          <li>zest and juice ½ lemon</li>
+          <li>100g soft cheese</li>
+        </ul>
+      </b>
+
+      <button class="remove-button">Remove</button>
+    </div>
+
+    <div class="item-container">
+      <h3>Cacio e pepe</h3>
+      <img width="160px;" height ="160px" src="p2.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b>
+        <ul>
+          <li>200g bucatini or spaghetti</li>
+          <li>25g butter</li>
+          <li>1 tsp freshly ground black pepper</li>
+          <li>50g pecorino or parmesan</li>
+        </ul>
+      </b>
+      <button class="remove-button" type="button">Remove</button>
+    </div>
+
+    <div class="item-container">
+      <h3>Cheesy tuna </h3>
+      <img width="160px;" height ="160px" src="p3.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b>
+        <ul>
+          <li>400g penne</li>
+          <li>200g can yellowfin tuna in olive oil</li>
+          <li>190g jar basil pesto</li>
+          <li>100g cheddar</li>
+          <li>250g punnet cherry tomato</li>
+        </ul>
+      </b>
+      <button class="remove-button" type="button">Remove</button>
+    </div>
+
+    <div class="item-container">
+      <h3>Runner bean </h3>
+      <img width="160px;" height ="160px" src="p4.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b
+        ><ul>
+          <li>175g tagliatelle</li>
+          <li>200g runner bean</li>
+          <li>3 slices prosciutto</li>
+          <li>1 tbsp olive oil</li>
+          <li>2 rounded tbsp half-fat crème fraîche</li>
+        </ul></b
+      >
+      <button class="remove-button" type="'button">Remove</button>
+    </div>
+
+    <div class="item-container">
+      <h3>Asparagus pasta </h3>
+      <img width="160px;" height ="160px" src="p5.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b>
+        <ul>
+          <li>large bunch mint (about 80g)</li>
+          <li>250g tub ricotta</li>
+          <li>25g parmesan</li>
+          <li>400g farfalle</li>
+          <li>200g asparagus tips</li>
+        </ul>
+      </b>
+      <button class="remove-button" type="button">Remove</button>
+    </div>
+
+    <div class="item-container">
+      <h3>Salmon & spinach </h3>
+      <img width="160px;" height ="160px" src="p6.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b
+        ><ul>
+          <li>200g penne</li>
+          <li>2 skinless salmon fillets</li>
+          <li>60g sundried tomatoes</li>
+          <li>80g bag spinach</li>
+          <button class="remove-button" >Remove</button>
+        </ul>
+      </b>
+    </div>
+  </div>
+
+  <form style="margin: 20px" id="add-recipie">
+    <input id="recipieTitle" type="text" required />
+    <select id="pictureOption" name="image" required>
+      <option value="1">Image 1</option>
+      <option value="2">Image 2</option>
+    </select>
+    <textarea id="list">
+      enter ingredients seperated by comma
+    </textarea>
+    <button type="submit">Add Item</button>
+  </form>
+</body>
+
+<script>
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+  let removeButtons = Array.from(
+    document.getElementsByClassName("remove-button")
+  );
+  const authRequired = document.getElementById("auth-required");
+  const authDone = document.getElementById("auth-done");
+  const logoutBtn = document.getElementById("logout");
+  const addRecipieForm = document.getElementById("add-recipie");
+  const container = document.getElementById("container");
+
+  function createRecipieBox(title, imgNum, ing) {
+    const btn = document.createElement("button");
+    btn.id = "remove-button";
+    btn.addEventListener("click", removeItem);
+
+    const element = `
+    <div class="item-container">
+      <h3> ${title} </h3>
+      <img width="200px;" src="p${imgNum}.jpg" />
+      <p><b>Ingredients:</b></p>
+      <b>
+        <ul>
+          ${ing
+            .split(",")
+            .map((ingredient) => {
+              return `<li>${ingredient}</li>`;
+            })
+            .join("")}
+        </ul>
+      </b>
+      ${btn}
+    </div>
+    `;
+    container.innerHTML += element;
+  }
+
+  addRecipieForm.style.display = user ? "flex" : "none";
+
+  addRecipieForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const { recipieTitle, pictureOption, list } = event.target.elements;
+    createRecipieBox(recipieTitle.value, pictureOption.value, list.value);
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.reload();
+  });
+
+  if (user) {
+    authRequired.style.display = "none";
+    authDone.style.display = "block";
+  } else {
+    authRequired.style.display = "block";
+    authDone.style.display = "none";
+  }
+
+  removeButtons.forEach((btn) => {
+    btn.style.display = user ? "block" : "none";
+  });
+
+  function removeItem(event) {
+    event.target.parentElement.remove();
+  }
+
+  for (let i = 0; i < removeButtons.length; i++) {
+    removeButtons[i].addEventListener("click", removeItem);
+  }
+
+  function addItem() {
+    let itemToAdd = document.getElementById("inputbox").value;
+    let htmlToAdd = `
+      <div class="item-container">
+          <h3>${itemToAdd}</h3>
+          <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+      </div>`;
+
+    let newElement = document.createElement("div");
+    newElement.innerHTML = htmlToAdd;
+
+    document.getElementById("container").appendChild(newElement);
+
+    document.getElementById("container").innerHTML += `
+      <div class="item-container">
+      <div class="title">${itemToAdd}</div>
+      <button onclick = "removeItem('${itemToAdd}')">Remove</button>
+      </div>
+      `;
+  }
+</script>
